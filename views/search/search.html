@@ -3,6 +3,9 @@
 <head>
   <title>Search</title>
   <link rel="stylesheet" href="style.css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="video.js"></script>
+  <script type="text/javascript" src="player.js"></script>
 </head>
 <body>
 
@@ -20,6 +23,29 @@
     </div>
   </header>
 
+
+<div class="content">
+<div id="player"></div>
+Search Techniques:
+  <form action="/search" method="POST">
+  <input type="text" id="search" name="search">
+  <input type="submit" id="seachbtn" value="Submit">
+  </form>
+  <div id="results">
+  {{#items}}
+  <div class="video">
+  {{#videoid}}
+  <button class="viewbtn" video="{{videoid}}">Watch Video</button>
+  {{/videoid}}
+  {{#playlistid}}
+  <button class="viewbtn" playlistid="{{playlistid}}">Watch Playlist</button>
+  {{/playlistid}}
+  <div class="title">{{title}}</div>
+  <div class="description">{{description}}</div>
+  <div class="channel">Channel: {{channel}}</div>
+  </div>
+  {{/items}}
+</div>
 
 
 
