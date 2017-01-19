@@ -1,0 +1,227 @@
+
+video#bgvid {
+    position: fixed;
+    top: 60%;
+    left: 60%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -ms-transform: translateX(-60%) translateY(-60%);
+    -moz-transform: translateX(-60%) translateY(-60%);
+    -webkit-transform: translateX(-60%) translateY(-60%);
+    transform: translateX(-60%) translateY(-60%);
+    background: url(../media/Productive-Morning.jpg) no-repeat center center;
+    background-size: contain;
+}
+
+
+ h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 50px;
+  text-align: center;
+  color: #fff;
+}
+
+h2 {
+  font-family:  'Oswald', sans-serif;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.nav ul {
+  list-style: none;
+  background-color: #000;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+
+}
+.nav li {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #fff;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+
+.nav a:hover {
+  background-color: #2A84E8;
+}
+
+
+
+@media screen and (min-width: 600px) {
+  .nav li {
+    width: 120px;
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+  }
+
+
+  .nav li {
+    display: inline-block;
+
+  }
+
+
+legend {
+  font-family: 'Oswald', sans-serif;
+}
+
+label {
+  font-family: 'Oswald', sans-serif;
+}
+
+button {
+  font-family:  'Oswald', sans-serif;
+}
+
+#btn btn-primary {
+  font-family:  'Oswald', sans-serif;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    width: 1200px;
+    height: 800px;
+}
+
+.container {
+  margin:  50px auto;
+  width: 640px;
+}
+
+.login {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 20px 20px;
+  width: 310px;
+}
+
+.signup {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 20px 20px;
+  width: 310px;
+}
+
+.search {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 20px 20px;
+  width: 310px;
+}
+
+a:link {
+  text-align: center;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  background: url(http://www.shukatsu-note.com/wp-content/uploads/2014/12/computer-564136_1280.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  top: 360px;
+  left: 510px;
+  margin: 60px auto;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: absolute;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
