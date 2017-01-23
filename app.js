@@ -236,7 +236,7 @@ app.get("/ocd", function(req,res){
 
 //panic disorder
 app.get("/panic_disorder", function(req, res){
-  res.render("topics/anxiety/anxiety_subcategories/ocd");
+  res.render("topics/anxiety/anxiety_subcategories/panic_disorder");
 });
 
 //social anxiety

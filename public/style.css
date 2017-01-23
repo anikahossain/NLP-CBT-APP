@@ -18,9 +18,16 @@ video#bgvid {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: url(http://www.shukatsu-note.com/wp-content/uploads/2014/12/computer-564136_1280.jpg) no-repeat;
+  background: url(https://images8.alphacoders.com/291/thumb-1920-291405.jpg);
   background-size: 100%;
-  background-attachment: scroll;
+    background-position:center center;
+    background-repeat:no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+  background-attachment: fixed;
   height: 100vh;
 }
 
@@ -580,8 +587,8 @@ a.panic_disorder {
   text-align: center;
   font-size: 25px;
   position: absolute;
-  top: 50px;
-  left: 15px;
+  top: 70px;
+  left: 5px;
 }
 
 a.ocd {
@@ -685,4 +692,105 @@ a.work_stress {
   position: absolute;
   top: 70px;
   left: 20px;
+}
+
+h5 {
+  color: #fff;
+}
+
+div.techniques {
+  position: absolute;
+  left: -20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.fear {
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.ocd {
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.panic_attack {
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.social_anxiety {
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.grief {
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.mood_lifting {
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.moving_on {
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.communication{
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+
+p.center-align.goal_setting{
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.learning{
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
+}
+
+p.center-align.procrastination{
+  position: absolute;
+  left: 400px;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 2.5;
+  padding: 20px;
 }
