@@ -61,19 +61,22 @@ app.post("/login", function(req, res){
   db.one(
     "SELECT * FROM users WHERE email = $1",
     [data.email]
-    ).catch(function(){
-      res.send("Email/Password not found.")
+    ).catch(function(error){
+      console.log("hi", error);
+      res.redirect("/signup")
     }).then(function(user){
       bcrypt.compare(data.password, user.password_digest, function(err, cmp){
         if(cmp){
           req.session.user = user;
-          res.redirect("/user_profile");
+          res.redirect("/about");
         }else {
-          res.send("Email/Password not found.")
+          console.log("bye", err);
+          res.redirect("/signup");
         }
       });
     });
 });
+
 
 //sign-up page
 app.get("/signup", function(req, res){
@@ -92,7 +95,7 @@ app.post("/signup", function(req, res){
       .then(function(user){
         console.log("user", user);
         req.session.user = user;
-        res.redirect("/user_profile");
+        res.redirect("/about");
       })
       .catch(function(error){
         console.log("Error, user could not be made, error.message || error");
@@ -124,7 +127,7 @@ app.get("/search", function(req, res){
 //API implementation for search page
 app.post("/search", function(req, res){
   var search = req.body.search; //user's input
-  var narrow = encodeURIComponent('nlp', 'cbt', 'productivity'); //narrows down search results to vids that pertain to these subjects
+  var narrow = encodeURIComponent(''); //narrows down search results to vids that pertain to these subjects
   fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&q='+narrow+'%20'+search+'&key=+AIzaSyBChV0J_K9d530LpO4bMxkjIeCDzcCHSRM')
   .then(function(response){
     return response.json();
@@ -137,6 +140,8 @@ app.post("/search", function(req, res){
       user: req.session.user,
       items : []
     };
+    console.log(body)
+    console.log(body.items)
     body.items.map(function(video){
       //getting relevant data to respond from API
       data.items.push({
@@ -158,8 +163,51 @@ app.get("/user_profile", function(req, res){
 });
 
 //user's journal
-app.get("/journal", function(req, res){
-  res.render("journal/journal");
+app.get("/blog", function(req, res){
+  if(!req.session.user){
+    res.render("login/login");
+    return;
+  }
+  db.any(
+    "SELECT * FROM entries WHERE users_id = $1 ORDER BY time_stamp DESC LIMIT 5",
+    [req.session.user.id]
+    ).then(function(entries){
+      entries = entries.map(function(entry){
+        var date = new Date(entry.time_stamp);
+        return {
+          entry: entry.entry,
+          time_stamp: date.toString()
+        };
+      });
+      res.render("blog/blog", {entries: entries});
+    }).catch(function(error){
+      console.log(error);
+    });
+});
+
+//posting user's blog posts
+app.post("/blog", function(req, res){
+  var now = Date.now(); console.log(Date(now));
+  db.none(
+    "INSERT into entries (users_id, entry, time_stamp) VALUES ($1, $2, $3)",
+    [req.session.user.id, req.body.blog_entry, now]
+    ).then(function(){
+      db.any(
+    "SELECT * FROM entries WHERE users_id = $1 ORDER BY time_stamp DESC LIMIT 5",
+    [req.session.user.id]
+    ).then(function(entries){
+      entries = entries.map(function(entry){
+        var date = Date(entry.time_stamp);
+        return {
+          entry: entry.entry,
+          time_stamp: date.toString()
+        };
+      });
+      res.render("blog/blog", {entries: entries});
+    }).catch(function(error){
+      console.log(error);
+    });
+    });
 });
 
 //topics
@@ -205,17 +253,17 @@ app.get("/depression", function(req, res){
 
 //grief
 app.get("/grief", function(req,res){
-  res.render("/topics/depression/depression_subcategories/grief");
+  res.render("topics/depression/depression_subcategories/grief");
 });
 
 //mood lifting
 app.get("/mood_lifting", function(req,res){
-  res.render("/topics/depression/depression_subcategories/mood_lifting");
+  res.render("topics/depression/depression_subcategories/mood_lifting");
 });
 
 //moving on
 app.get("/moving_on", function(req,res){
-  res.render("/topics/depression/depression_subcategories/moving_on");
+  res.render("topics/depression/depression_subcategories/moving_on");
 });
 
 
@@ -227,8 +275,18 @@ app.get("/stress", function(req, res){
 //subcategories of stress page
 
 //anger management
-app.get("/moving_on", function(req,res){
-  res.render("/topics/depression/depression_subcategories/moving_on");
+app.get("/anger_management", function(req,res){
+  res.render("topics/stress/stress_subcategories/anger_management");
+});
+
+//mindfulness
+app.get("/mindfulness", function(req,res){
+  res.render("topics/stress/stress_subcategories/mindfulness");
+});
+
+//work stress
+app.get("/work_stress", function(req,res){
+  res.render("topics/stress/stress_subcategories/work_stress");
 });
 
 //route to productivity page
@@ -236,19 +294,36 @@ app.get("/productivity", function(req, res){
   res.render("topics/productivity/productivity");
 });
 
+//subcategories of productivity page
+
+//goal setting
+app.get("/goal_setting", function(req,res){
+  res.render("topics/productivity/productivity_subcategories/goal_setting");
+});
+
+//learning
+app.get("/learning", function(req,res){
+  res.render("topics/productivity/productivity_subcategories/learning");
+});
+
+//procrastination
+app.get("/procrastination", function(req,res){
+  res.render("topics/productivity/productivity_subcategories/procrastination");
+});
+
 //route to intropersonal page
 app.get("/intropersonal", function(req, res){
   res.render("topics/intropersonal/intropersonal");
 });
 
-//takes you from login to user profile
-app.post("/login", function(req, res){
-  res.render("user_profile/user_profile");
+//subcategories of intropersonal page
+
+//communication
+app.get("/communication", function(req,res){
+  res.render("topics/intropersonal/intropersonal_subcategories/communication");
 });
 
-//takes you from sign up to user profile
-app.post("/signup", function(req, res){
-  res.render("user_profile/user_profile");
-});
+
+
 
 

@@ -3,52 +3,60 @@
 <head>
   <title>Search</title>
   <link rel="stylesheet" href="style.css"/>
-  <script type="text/javascript" src="jquery.js"></script>
-  <script type="text/javascript" src="video.js"></script>
-  <script type="text/javascript" src="player.js"></script>
+  <script type="text/javascript" src="./jquery.js"></script>
+  <script type="text/javascript" src="./video.js"></script>
+  <script type="text/javascript" src="./player.js"></script>
+<link rel="stylesheet" href="style.css"/>
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
 
-<body class="landing">
-  <header>
-    <div class="nav">
-      <ul>
-        <li class="login"><a class="active" href="/login">Login</a></li>
-        <li class="sign_up"><a href="/signup">Sign Up</a></li>
-        <li class="search"><a href="/search">Search</a></li>
-        <li class="journal"><a href="/journal">Journal</a></li>
-        <li class="profile"><a href="/user_profile">Profile</a></li>
-        <li class="topics"><a href="/topics">Topics</a></li>
-      </ul>
-    </div>
+ <header>
+        <nav class="black">
+        <div class="nav-wrapper" >
+          <ul id="nav-mobile" class="right hide-on-med-and-down black">
+            <li class="topics"><a class="topics" href="/topics">Topics</a></li>
+            <li class="blog"><a class="blog" href="/blog">Blog</a></li>
+            <li class="home"><a class="homes" href="/">Logout</a></li>
+          </ul>
+        </div>
+       </nav>
+
   </header>
 
 
-<div class="content">
+<div class="content_vid">
 <div id="player"></div>
-Search Techniques:
-  <form action="/search" method="POST">
+<div class="search_input">
+<h5 class="search">Search Techniques:</h5>
+  <form class="search_vids" action="/search" method="POST">
   <input type="text" id="search" name="search">
-  <input type="submit" id="seachbtn" value="Submit">
+  <input class="vid_submit" type="submit" id="seachbtn" value="Submit">
   </form>
-  <div id="results">
+  </div>
+  <div class="results">
   {{#items}}
   <div class="video">
-  {{#videoid}}
-  <button class="viewbtn" video="{{videoid}}">Watch Video</button>
-  {{/videoid}}
+
   {{#playlistid}}
   <button class="viewbtn" playlistid="{{playlistid}}">Watch Playlist</button>
   {{/playlistid}}
+  <div><img class="video_img" src="{{img}}" alt=""></div>
   <div class="title">{{title}}</div>
   <div class="description">{{description}}</div>
   <div class="channel">Channel: {{channel}}</div>
+  {{#videoid}}
+  <button class="viewbtn" video="{{videoid}}">Watch Video</button>
+  {{/videoid}}
   </div>
   {{/items}}
 </div>
 
 
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 </html>
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Journal</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:900" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+
+  <header>
+       <nav class="black">
+        <div class="nav-wrapper" >
+          <ul id="nav-mobile" class="right hide-on-med-and-down black">
+            <li class="search"><a class="search" href="/search">Search</a></li>
+            <li class="topics"><a class="topics" href="/topics">Topics</a></li>
+            <li class="home"><a class="homes" href="/">Logout</a></li>
+          </ul>
+        </div>
+       </nav>
+  </header>
+  <br>
+  <br>
+<h2 class="center-align">Log your Progress</h2>
+<br>
+<div class="entries">
+<form class="blog_form" action="/blog" method="post">
+<h5 class="status center-align">What's on your mind?</h5>
+<br>
+
+<textarea class="white" rows="5" cols="50" name="blog_entry" placeholder="Feel free to write about what you're struggling with, goals, aspirations, etc."></textarea>
+<button type="submit" class="blog_entry_submit">Submit</button>
+</form>
+</div>
+<div class="entry">
+{{#entries}}
+
+  <p>{{entry}}, {{time_stamp}} </p>
+{{/entries}}
+</div>
+
+
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+
+</body>
+</html>
